@@ -1,0 +1,2 @@
+2021-12-11 11:01:05,99 http-nio-8080-exec-1 WARN Error looking up JNDI resource ${jndi:ldap://127.0.0.1/a}. javax.naming.CommunicationException: 127.0.0.1:389 [Root exception is java.net.ConnectException: Connection refused (Connection refused)]
+WARN ${jndi:ldap://127.0.0.1:9898/} test2
