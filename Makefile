@@ -14,8 +14,20 @@ test_here: gzipped_bad.log.gz
 	cat re.out
 
 find: gzipped_bad.log.gz
-	sudo date
 	cp /dev/null re.out
 	cp /dev/null re.err
+	sudo date
 	time script -c 'sudo find / -type f \( -name '*.log' -o -name '*.log.gz' -o -name '*_log' -o -name '*_log.gz' \) -exec  python regex-check-logs.py --out re.out --err re.err --in '{}'  \+'
 	cat re.out
+
+
+all.list:
+	sudo find / -type f \( -name '*.log' -o -name '*.log.gz' -o -name '*_log' -o -name '*_log.gz' \) > $@
+
+find_all_list: all.list
+	cp /dev/null re.out
+	cp /dev/null re.err
+	sudo date
+	time script -c 'sudo python regex-check-logs.py --out re.out --err re.err --in-file-list all.list'
+	cat re.out
+	wc -l re.out re.err
